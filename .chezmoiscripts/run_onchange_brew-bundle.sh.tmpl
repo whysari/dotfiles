@@ -9,7 +9,7 @@ set -euo pipefail
 
 if command -v brew >/dev/null 2>&1; then
     echo "📦 Syncing Homebrew packages from Brewfile..."
-    brew bundle --file="{{ joinPath .chezmoi.sourceDir "Brewfile" }}"
+    brew bundle --no-upgrade --file="{{ joinPath .chezmoi.sourceDir "Brewfile" }}"
 else
     echo "⚠️ Homebrew is not installed yet. Skipping Brewfile bundle."
 fi
