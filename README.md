@@ -31,25 +31,14 @@ dotfiles/
 
 ---
 
-## Safe Preview & Testing (Without Touching `$HOME`)
-
-Because this repository is staged in `/Users/ysr/.gemini/antigravity/scratch/dotfiles`, you can preview what Chezmoi would do before applying anything to your actual home directory:
+## Preview & Apply Changes Locally
 
 ```bash
-# 1. Install chezmoi (if not yet installed)
-brew install chezmoi
+# Preview changes without modifying $HOME
+chezmoi diff
 
-# 2. Initialize config from this scratch directory and run a dry-run diff
-chezmoi init --source=/Users/ysr/.gemini/antigravity/scratch/dotfiles
-chezmoi diff --source=/Users/ysr/.gemini/antigravity/scratch/dotfiles
-```
-
-When you are happy with the diff and ready to apply:
-
-```bash
-chezmoi apply --source=/Users/ysr/.gemini/antigravity/scratch/dotfiles --dry-run -v
-# Remove --dry-run to apply for real:
-chezmoi apply --source=/Users/ysr/.gemini/antigravity/scratch/dotfiles -v
+# Apply changes to $HOME
+chezmoi apply -v
 ```
 
 ---
