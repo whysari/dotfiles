@@ -1,0 +1,32 @@
+# =============================================================================
+# ~/.bashrc — Windows (Git Bash / WSL) & Linux Bash Configuration
+# =============================================================================
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# --- Environment & PATH ---
+export PATH="$HOME/.local/bin:$PATH"
+
+# --- History Settings ---
+HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=10000
+HISTFILESIZE=20000
+shopt -s histappend
+
+# --- Shared Shell Configs (Aliases & Functions across Zsh & Bash) ---
+[ -f "$HOME/.config/shell/aliases.sh" ] && source "$HOME/.config/shell/aliases.sh"
+[ -f "$HOME/.config/shell/functions.sh" ] && source "$HOME/.config/shell/functions.sh"
+
+# --- Modern CLI Integrations (loaded if installed) ---
+command -v fzf >/dev/null 2>&1 && eval "$(fzf --bash)"
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
+
+# --- Starship Cross-Shell Prompt ---
+command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+
+# --- Local Machine Overrides (untracked) ---
+[ -f "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"

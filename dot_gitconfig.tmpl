@@ -1,0 +1,17 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[core]
+{{- if eq .chezmoi.os "windows" }}
+	autocrlf = true
+{{- else }}
+	autocrlf = input
+{{- end }}
+	editor = code --wait

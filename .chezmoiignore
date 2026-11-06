@@ -1,0 +1,13 @@
+# Documentation stays in the repo only
+README.md
+
+{{ if ne .chezmoi.os "darwin" -}}
+# macOS-only files
+Brewfile
+.zshrc
+{{ end -}}
+
+{{ if eq .chezmoi.os "windows" -}}
+# Ghostty is used on macOS (and Linux desktop), skip on Windows
+.config/ghostty/**
+{{ end -}}

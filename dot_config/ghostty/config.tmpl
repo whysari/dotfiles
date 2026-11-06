@@ -1,0 +1,52 @@
+# --- Appearance ---
+theme = Catppuccin Mocha
+font-family = "JetBrainsMono Nerd Font"
+font-size = {{ if eq .chezmoi.os "darwin" }}19{{ else }}13{{ end }}
+font-thicken = true
+
+# The "Frosted Glass" look
+background-opacity = 0.85
+background-blur-radius = 20
+
+# Window & Tabs
+window-padding-x = 12
+window-padding-y = 12
+{{- if eq .chezmoi.os "darwin" }}
+macos-titlebar-style = tabs
+{{- end }}
+window-theme = system
+window-decoration = true
+{{- if eq .chezmoi.os "darwin" }}
+macos-option-as-alt = true
+{{- end }}
+
+# --- Behavior ---
+# Confirm before closing if a process is running
+confirm-close-surface = true
+copy-on-select = true
+
+# --- Keybindings ---
+{{- if eq .chezmoi.os "darwin" }}
+# Create splits (horizontal and vertical)
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# Jump between splits
+keybind = cmd+alt+left=goto_split:left
+keybind = cmd+alt+right=goto_split:right
+keybind = cmd+alt+up=goto_split:up
+keybind = cmd+alt+down=goto_split:down
+
+# The "Quake-style" Dropdown Terminal (Exclusive to Ghostty)
+# This lets you toggle a terminal window from anywhere in macOS
+# Note: Requires Accessibility permissions in System Settings
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+{{- else }}
+# Linux keybindings (Ctrl+Shift equivalents)
+keybind = ctrl+shift+d=new_split:right
+keybind = ctrl+shift+e=new_split:down
+keybind = alt+left=goto_split:left
+keybind = alt+right=goto_split:right
+keybind = alt+up=goto_split:up
+keybind = alt+down=goto_split:down
+{{- end }}

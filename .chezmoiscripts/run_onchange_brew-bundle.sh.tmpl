@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+# =============================================================================
+# Automatically runs `brew bundle` whenever Brewfile changes
+# Brewfile hash: {{ include "Brewfile" | sha256sum }}
+# =============================================================================
+
+set -euo pipefail
+
+if command -v brew >/dev/null 2>&1; then
+    echo "📦 Syncing Homebrew packages from Brewfile..."
+    brew bundle --file="{{ joinPath .chezmoi.sourceDir "Brewfile" }}"
+else
+    echo "⚠️ Homebrew is not installed yet. Skipping Brewfile bundle."
+fi
+{{- end -}}

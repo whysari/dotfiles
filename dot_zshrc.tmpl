@@ -1,0 +1,32 @@
+# =============================================================================
+# ~/.zshrc — macOS Zsh Configuration (managed by Chezmoi)
+# =============================================================================
+
+# --- Environment & PATH ---
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+# --- History Settings ---
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+
+# --- Completion System ---
+autoload -Uz compinit && compinit
+
+# --- Shared Shell Configs (Aliases & Functions across Zsh & Bash) ---
+[ -f "$HOME/.config/shell/aliases.sh" ] && source "$HOME/.config/shell/aliases.sh"
+[ -f "$HOME/.config/shell/functions.sh" ] && source "$HOME/.config/shell/functions.sh"
+
+# --- Modern CLI Integrations (loaded if installed) ---
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
+
+# --- Starship Cross-Shell Prompt ---
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+# --- Local Machine Overrides (untracked) ---
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
