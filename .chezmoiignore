@@ -11,3 +11,9 @@ Brewfile
 # Ghostty is used on macOS (and Linux desktop), skip on Windows
 .config/ghostty/**
 {{ end -}}
+
+{{ if ne .chezmoi.os "windows" -}}
+# Windows-only files
+Documents/PowerShell/**
+Documents/WindowsPowerShell/**
+{{ end -}}
